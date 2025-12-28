@@ -16,7 +16,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__)) # D:\competent\more_emo
 parent_dir = os.path.dirname(current_dir)                # D:\competent
 cv_project_path = os.path.join(parent_dir, 'DeepFER')
 
-# 定义语音服务所在的文件夹路径
+# 【新增】定义语音服务所在的文件夹路径
 # speech_project_path = os.path.join(parent_dir, 'websdk-python-demo-main')
 
 # 添加路径到系统
@@ -24,7 +24,7 @@ paths_to_add = [
     cv_project_path,
     os.path.join(cv_project_path, 'src'),
     current_dir,
-    # speech_project_path  # 将语音项目路径加入搜索列表
+    # speech_project_path  # 【新增】将语音项目路径加入搜索列表
 ]
 
 for path in paths_to_add:
@@ -1019,10 +1019,12 @@ def init_services():
         blenderbot_model.eval()
         print("✅ BlenderBot 模型就绪")
 
+        # --- 3. 初始化CV引擎 ---
         model_path = r'D:\competent\DeepFER\checkpoints\best_rafdb.keras'
         cv_engine = CVFEREngine(model_path)
         print("✅ CV表情识别引擎就绪")
 
+        # --- 4. 【新增】初始化语音服务 ---
         print("正在初始化讯飞语音服务...")
         # 注意：SpeechService 内部会自动去读 .env 文件里的 APP_ID 等信息
         speech_service = SpeechService()
